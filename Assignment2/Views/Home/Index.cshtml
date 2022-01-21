@@ -1,0 +1,65 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    @* CDN links- Here, Jumbotron is working *@
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    @* CDN links- Here, Jumbotron is working *@
+</head>
+<body>
+    <div class="container-fluid"> 
+        @{ 
+
+            List<int> denomination = new List<int>() { 1000, 500, 100, 10, 1 };
+            List<int> count = new List<int>();
+
+            if (ViewBag.Amount > 0)
+            {
+                int temp = ViewBag.Amount;
+
+                foreach (var item in denomination)
+                {
+                    int currency = Convert.ToInt32(temp/item);
+                    count.Add(currency);
+
+                    temp = temp - (currency * item);
+                }
+            }
+        }
+
+        <div class="container-fluid">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Denomination</th>
+                        <th>Count</th>
+                        <th>Amount</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (int i=0; i<count.Count; i++)
+                    { 
+                           <tr>
+                                <td>@denomination[i]</td>
+                                <td>@count[i]</td>
+                                <td>@(denomination[i]*count[i])</td>
+                            </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
