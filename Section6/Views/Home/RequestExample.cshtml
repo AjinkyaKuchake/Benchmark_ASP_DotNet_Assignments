@@ -1,0 +1,68 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>RequestExample</title>
+
+    @* CDN links- Here, Jumbotron is working *@
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    @* CDN links- Here, Jumbotron is working *@
+</head>
+<body>
+    <nav class="navbar navbar-expand-sm bg-success navbar-dark">
+        <ul class="navbar-nav">
+            <li class="nav-item"><a class="nav-link" href="/home/index">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="/home/products">Products</a></li>
+            <li class="nav-item"><a class="nav-link" href="/home/contact">Contact</a></li>
+            <li class="nav-item"><a class="nav-link" href="/home/aboutus">About Us</a></li>
+        </ul>
+    </nav>
+    <div class="container-fluid">
+        <table class="table">
+            <tr>
+                <td>URL</td>
+                <td>@ViewBag.URL</td>
+            </tr>
+            <tr>
+                <td>Path</td>
+                <td>@ViewBag.Path</td>
+            </tr>
+            <tr>
+                <td>PhysicalPath</td>
+                <td>@ViewBag.PhysicalPath</td>
+            </tr>
+            <tr>
+                <td>PhysicalRequestPath</td>
+                <td>@ViewBag.PhysicalRequestPath</td>
+            </tr>
+            <tr>
+                <td>BrowserType</td>
+                <td>@ViewBag.BrowserType</td>
+            </tr>
+            <tr>
+                <td>QueryString</td>
+                <td>@ViewBag.QueryString</td>
+            </tr>
+            <tr>
+                <td>Headers</td>
+                <td>@ViewBag.Headers</td>
+            </tr>
+            <tr>
+                <td>HttpMethod</td>
+                <td>@ViewBag.HttpMethod</td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>
