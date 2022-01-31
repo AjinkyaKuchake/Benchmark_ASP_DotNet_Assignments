@@ -1,0 +1,35 @@
+﻿@*To make a View Strongly Typed*@
+@model ModelExample.Models.Product  
+@{
+    ViewBag.Title = "Details";
+}
+<h2>Product Details</h2>
+<table class="table">
+    @*<tr>
+            <td>Product ID</td>
+            <td>@ViewBag.MatchingProduct.ProductId</td>
+        </tr>
+        <tr>
+            <td>Product Name</td>
+            <td>@ViewBag.MatchingProduct.ProductName</td>
+        </tr>
+        <tr>
+            <td>Product Rate</td>
+            <td>@ViewBag.MatchingProduct.Rate</td>
+        </tr>*@
+
+    @*Strongly typed*@
+    <tr>
+        <td>Product ID</td>
+        <td>@Model.ProductId</td>
+    </tr>
+    <tr>
+        <td>Product Name</td>
+        <td>@Model.ProductName</td>
+    </tr>
+    <tr>
+        <td>Product Rate</td>
+        <td>@Model.Rate</td>
+    </tr>
+
+</table>
