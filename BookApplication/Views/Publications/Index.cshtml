@@ -1,0 +1,119 @@
+﻿@model List<BookApplication.Models.Publication>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+
+<div class="container">
+    <div><h3>Book Publications</h3></div>
+    <div class="row">
+        <div class="col-md-11">
+            <input class="form-control" id="myInput" type="text" placeholder="Search..">
+        </div>
+        <div class="col-md-1" style="display:inline-block;">
+            <a class="btn btn-primary " href="/publications/create">Create</a>
+        </div>
+    </div>
+    <table class="table" style="background-color:white">
+            <thead style="background-color:black">
+                <tr>
+                    @*<th style="color:white">Publication ID</th>
+        <th style="color:white">Publication Name</th>
+        <th style="color:white">Country</th>
+        <th style="color:white">Actions</th>*@
+
+                    @*Publication ID*@
+                    <th>
+                        @if (ViewBag.IconClass == "fa-sort-desc")
+                        {
+                            <a style="" href="/publications/index?SortColumn=PublicationID&IconClass=fa-sort-asc">Publication ID</a>
+                            if (ViewBag.SortColumn == "PublicationID")
+                            {
+                                <i class="fa @ViewBag.IconClass"></i>
+                            }
+
+                        }
+                        else
+                        {
+                            <a href="/publications/index?SortColumn=PublicationID&IconClass=fa-sort-desc">Publication ID</a>
+                            if (ViewBag.SortColumn == "PublicationID")
+                            {
+                                <i class="fa @ViewBag.IconClass"></i>
+                            }
+                        }
+                    </th>
+
+                    @*PublicationName*@
+                    <th>
+                        @if (ViewBag.IconClass == "fa-sort-desc")
+                        {
+                            <a href="/publications/index?SortColumn=PublicationName&IconClass=fa-sort-asc">Publication Name</a>
+                            if (ViewBag.SortColumn == "PublicationName")
+                            {
+                                <i class="fa @ViewBag.IconClass"></i>
+                            }
+
+                        }
+                        else
+                        {
+                            <a href="/publications/index?SortColumn=PublicationName&IconClass=fa-sort-desc">Publication Name</a>
+                            if (ViewBag.SortColumn == "PublicationName")
+                            {
+                                <i class="fa @ViewBag.IconClass"></i>
+                            }
+                        }
+                    </th>
+
+                    @*Country*@
+                    <th>
+                        @if (ViewBag.IconClass == "fa-sort-desc")
+                        {
+                            <a href="/publications/index?SortColumn=Country&IconClass=fa-sort-asc">Country</a>
+                            if (ViewBag.SortColumn == "Country")
+                            {
+                                <i class="fa @ViewBag.IconClass"></i>
+                            }
+
+                        }
+                        else
+                        {
+                            <a href="/publications/index?SortColumn=Country&IconClass=fa-sort-desc">Country</a>
+                            if (ViewBag.SortColumn == "Country")
+                            {
+                                <i class="fa @ViewBag.IconClass"></i>
+                            }
+                        }
+                    </th>
+
+                    @*Actions*@
+                    <th>Actions</th>
+
+                </tr>
+            </thead>
+            <tbody id="myTable">
+                @foreach (var item in Model)
+                {
+                <tr>
+                    <td>@item.PublicationID</td>
+                    <td>@item.PublicationName</td>
+                    <td>@item.Country</td>
+                    <td><a class="btn btn-info" href="/Publications/Edit/@item.PublicationID">Edit</a>&nbsp;
+                    <a class="btn btn-danger" href="/Publications/Delete/@item.PublicationID">Delete</a></td>
+                </tr>
+                }
+            </tbody>
+    </table>
+ </div>
+
+
+<script>
+    $(document).ready(function () {
+        $("#myInput").on("keyup", function () {
+            var value = $(this).val().toLowerCase();
+            $("#myTable tr").filter(function () {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
+    });
+</script>

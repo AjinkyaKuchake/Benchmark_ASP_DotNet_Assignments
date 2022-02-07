@@ -1,0 +1,25 @@
+﻿@model BookApplication.Models.Publication
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+<div class="container" style="background-color:white;">
+    <h3>Edit Publication</h3>
+
+    <form action="/publications/edit/@Model.PublicationID" method="post">
+        <div class="form-group">
+            <input type="hidden" name="PublicationID" value="@Model.PublicationID" />
+            <label for="PublicationName">Publication Name</label>
+            <input type="text" class="form-control" id="PublicationName" name="PublicationName" placeholder="Publication Name" value="@Model.PublicationName"/>
+
+            <label for="Country">Country</label>
+            <input type="text" class="form-control" id="Country" name="Country" placeholder="Country" value="@Model.Country"/>
+        </div>
+        <button type="submit" class="btn btn-success">Save</button>
+        <a class="btn btn-danger" href="/publications/index">Cancel</a>
+        <hr />
+    </form>
+</div>
+
+

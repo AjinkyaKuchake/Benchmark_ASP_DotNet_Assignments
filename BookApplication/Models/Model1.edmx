@@ -1,0 +1,148 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="BookDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Books">
+          <Key>
+            <PropertyRef Name="BookID" />
+          </Key>
+          <Property Name="BookID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BookName" Type="varchar" MaxLength="50" />
+          <Property Name="Price" Type="decimal" Precision="15" Scale="2" />
+          <Property Name="Author" Type="varchar" MaxLength="50" />
+          <Property Name="Genre" Type="varchar" MaxLength="50" />
+          <Property Name="AvailabilityStatus" Type="varchar" MaxLength="50" />
+          <Property Name="PublicationID" Type="bigint" />
+          <Property Name="photo" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="Publications">
+          <Key>
+            <PropertyRef Name="PublicationID" />
+          </Key>
+          <Property Name="PublicationID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PublicationName" Type="varchar" MaxLength="40" />
+          <Property Name="Country" Type="varchar" MaxLength="40" />
+        </EntityType>
+        <Association Name="FK__Books__Publicati__29572725">
+          <End Role="Publications" Type="Self.Publications" Multiplicity="0..1" />
+          <End Role="Books" Type="Self.Books" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Publications">
+              <PropertyRef Name="PublicationID" />
+            </Principal>
+            <Dependent Role="Books">
+              <PropertyRef Name="PublicationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="BookDBModelStoreContainer">
+          <EntitySet Name="Books" EntityType="Self.Books" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Publications" EntityType="Self.Publications" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Books__Publicati__29572725" Association="Self.FK__Books__Publicati__29572725">
+            <End Role="Publications" EntitySet="Publications" />
+            <End Role="Books" EntitySet="Books" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="BookDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Book">
+          <Key>
+            <PropertyRef Name="BookID" />
+          </Key>
+          <Property Name="BookID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BookName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Price" Type="Decimal" Precision="15" Scale="2" />
+          <Property Name="Author" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Genre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="AvailabilityStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PublicationID" Type="Int64" />
+          <NavigationProperty Name="Publication" Relationship="Self.FK__Books__Publicati__29572725" FromRole="Books" ToRole="Publications" />
+          <Property Name="photo" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Publication">
+          <Key>
+            <PropertyRef Name="PublicationID" />
+          </Key>
+          <Property Name="PublicationID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PublicationName" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="Country" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Books" Relationship="Self.FK__Books__Publicati__29572725" FromRole="Publications" ToRole="Books" />
+        </EntityType>
+        <Association Name="FK__Books__Publicati__29572725">
+          <End Role="Publications" Type="Self.Publication" Multiplicity="0..1" />
+          <End Role="Books" Type="Self.Book" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Publications">
+              <PropertyRef Name="PublicationID" />
+            </Principal>
+            <Dependent Role="Books">
+              <PropertyRef Name="PublicationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="BookDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Books" EntityType="Self.Book" />
+          <EntitySet Name="Publications" EntityType="Self.Publication" />
+          <AssociationSet Name="FK__Books__Publicati__29572725" Association="Self.FK__Books__Publicati__29572725">
+            <End Role="Publications" EntitySet="Publications" />
+            <End Role="Books" EntitySet="Books" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="BookDBModelStoreContainer" CdmEntityContainer="BookDBEntities">
+          <EntitySetMapping Name="Books">
+            <EntityTypeMapping TypeName="BookDBModel.Book">
+              <MappingFragment StoreEntitySet="Books">
+                <ScalarProperty Name="photo" ColumnName="photo" />
+                <ScalarProperty Name="BookID" ColumnName="BookID" />
+                <ScalarProperty Name="BookName" ColumnName="BookName" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Author" ColumnName="Author" />
+                <ScalarProperty Name="Genre" ColumnName="Genre" />
+                <ScalarProperty Name="AvailabilityStatus" ColumnName="AvailabilityStatus" />
+                <ScalarProperty Name="PublicationID" ColumnName="PublicationID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Publications">
+            <EntityTypeMapping TypeName="BookDBModel.Publication">
+              <MappingFragment StoreEntitySet="Publications">
+                <ScalarProperty Name="PublicationID" ColumnName="PublicationID" />
+                <ScalarProperty Name="PublicationName" ColumnName="PublicationName" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

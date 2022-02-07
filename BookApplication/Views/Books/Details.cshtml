@@ -1,0 +1,55 @@
+﻿@model BookApplication.Models.Book
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+
+
+<div class="container" style="background-color:white;">
+    <div class="card mb-3" style="max-width: 900px;">
+        <div class="row no-gutters">
+            <div class="col-md-4">
+                <img src="data:image;base64,@Model.photo" class="card-img" alt="Image Not Available" width="100%">
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h2 class="card-title">@Model.BookName</h2>
+                    <hr />
+                    <table>
+                        <tr>
+                            <td><h4>Author</h4></td>
+                            <td><h4>&nbsp;&nbsp;@Model.Author</h4></td>
+                        </tr>
+                        <tr>
+                            <td><h4>Genre</h4></td>
+                            <td><h4>&nbsp;&nbsp;@Model.Genre</h4></td>
+                        </tr>
+                        <tr>
+                            <td><h4>Price</h4></td>
+                            <td><h4>&nbsp;&nbsp;@Model.Price.Value.ToString("C")</h4></td>
+                        </tr>
+                        <tr>
+                            <td><h4>Publisher</h4></td>
+                            <td><h4>&nbsp;&nbsp;@Model.Publication.PublicationName</h4></td>
+                        </tr>
+                        <tr>
+                            <td><h4>Status</h4></td>
+                            <td><h4>&nbsp;&nbsp;@Model.AvailabilityStatus</h4></td>
+                        </tr>
+                    </table>
+                    
+                    <hr />
+                    <h4>Plot</h4>
+                    <p class="card-text">
+                     This is the story about.This is the story about.This is the story about.
+                     This is the story about.This is the story about.This is the story about.
+                     This is the story about.This is the story about.This is the story about.
+                     This is the story about.This is the story about.This is the story about.
+                    </p>
+                    <p class="card-text"><small class="text-muted">&#169;Copyright 2022</small></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,263 @@
+﻿@model List<BookApplication.Models.Book>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+<div class="fluid-container">
+    <div><h3>Book Details</h3></div>
+    <div class="row">
+        <div class="col-md-11">
+            <input class="form-control" id="myInput" type="text" placeholder="Search..">
+        </div>
+        <div class="col-md-1" style="display:inline-block;">
+            <a class="btn btn-primary " href="/books/create">Create</a>
+        </div>
+    </div>
+
+    <table class="table" style="background-color:white">
+        <thead style="background-color:black">
+            <tr>
+                @*<th style="width:12%">Photo</th>
+        <th>Book ID</th>
+        <th>Book Name</th>
+        <th>Price</th>
+        <th>Author</th>
+        <th>Genre</th>
+        <th>Avail Status</th>
+        <th style="width:10%">Publication</th>
+        <th>Actions</th>*@
+
+
+                <th style="width:12%">Photo</th>
+                @*Book ID*@
+                <th>
+                    @if (ViewBag.IconClass == "fa-sort-desc")
+                    {
+                        <a style="" href="/books/index?SortColumn=BookID&IconClass=fa-sort-asc&PageNo=1">Book ID</a>
+                        if (ViewBag.SortColumn == "BookID")
+                        {
+                            <i class="fa @ViewBag.IconClass"></i>
+                        }
+
+                    }
+                    else
+                    {
+                        <a href="/books/index?SortColumn=BookID&IconClass=fa-sort-desc&PageNo=1">Book ID</a>
+                        if (ViewBag.SortColumn == "BookID")
+                        {
+                            <i class="fa @ViewBag.IconClass"></i>
+                        }
+                    }
+                </th>
+
+                @*Book Name*@
+                <th>
+                    @if (ViewBag.IconClass == "fa-sort-desc")
+                    {
+                        <a href="/books/index?SortColumn=BookName&IconClass=fa-sort-asc&PageNo=1">Book Name</a>
+                        if (ViewBag.SortColumn == "BookName")
+                        {
+                            <i class="fa @ViewBag.IconClass"></i>
+                        }
+
+                    }
+                    else
+                    {
+                        <a href="/books/index?SortColumn=BookName&IconClass=fa-sort-desc&PageNo=1">Book Name</a>
+                        if (ViewBag.SortColumn == "BookName")
+                        {
+                            <i class="fa @ViewBag.IconClass"></i>
+                        }
+                    }
+                </th>
+
+                @*Price*@
+                <th>
+                    @if (ViewBag.IconClass == "fa-sort-desc")
+                    {
+                        <a href="/books/index?SortColumn=Price&IconClass=fa-sort-asc&PageNo=1">Price</a>
+                        if (ViewBag.SortColumn == "Price")
+                        {
+                            <i class="fa @ViewBag.IconClass"></i>
+                        }
+
+                    }
+                    else
+                    {
+                        <a href="/books/index?SortColumn=Price&IconClass=fa-sort-desc&PageNo=1">Price</a>
+                        if (ViewBag.SortColumn == "Price")
+                        {
+                            <i class="fa @ViewBag.IconClass"></i>
+                        }
+                    }
+                </th>
+
+
+                @*Author*@
+                <th>
+                    @if (ViewBag.IconClass == "fa-sort-desc")
+                    {
+                        <a href="/books/index?SortColumn=Author&IconClass=fa-sort-asc&PageNo=1">Author</a>
+                        if (ViewBag.SortColumn == "Author")
+                        {
+                            <i class="fa @ViewBag.IconClass"></i>
+                        }
+
+                    }
+                    else
+                    {
+                        <a href="/books/index?SortColumn=Author&IconClass=fa-sort-desc&PageNo=1">Author</a>
+                        if (ViewBag.SortColumn == "Author")
+                        {
+                            <i class="fa @ViewBag.IconClass"></i>
+                        }
+                    }
+                </th>
+
+
+                @*Genre*@
+                <th>
+                    @if (ViewBag.IconClass == "fa-sort-desc")
+                    {
+                        <a href="/books/index?SortColumn=Genre&IconClass=fa-sort-asc&PageNo=1">Genre</a>
+                        if (ViewBag.SortColumn == "Genre")
+                        {
+                            <i class="fa @ViewBag.IconClass"></i>
+                        }
+
+                    }
+                    else
+                    {
+                        <a href="/books/index?SortColumn=Genre&IconClass=fa-sort-desc&PageNo=1">Genre</a>
+                        if (ViewBag.SortColumn == "Genre")
+                        {
+                            <i class="fa @ViewBag.IconClass"></i>
+                        }
+                    }
+                </th>
+
+
+                @*Availability Status*@
+                <th>
+                    @if (ViewBag.IconClass == "fa-sort-desc")
+                    {
+                        <a href="/books/index?SortColumn=AvailabilityStatus&IconClass=fa-sort-asc&PageNo=1">Avail Status</a>
+                        if (ViewBag.SortColumn == "AvailabilityStatus")
+                        {
+                            <i class="fa @ViewBag.IconClass"></i>
+                        }
+
+                    }
+                    else
+                    {
+                        <a href="/books/index?SortColumn=AvailabilityStatus&IconClass=fa-sort-desc&PageNo=1">Avail Status</a>
+                        if (ViewBag.SortColumn == "AvailabilityStatus")
+                        {
+                            <i class="fa @ViewBag.IconClass"></i>
+                        }
+                    }
+                </th>
+
+
+                @*Publication ID*@
+                <th>
+                    @if (ViewBag.IconClass == "fa-sort-desc")
+                    {
+                        <a href="/books/index?SortColumn=PublicationID&IconClass=fa-sort-asc&PageNo=1">Publication</a>
+                        if (ViewBag.SortColumn == "PublicationID")
+                        {
+                            <i class="fa @ViewBag.IconClass"></i>
+                        }
+
+                    }
+                    else
+                    {
+                        <a href="/books/index?SortColumn=PublicationID&IconClass=fa-sort-desc&PageNo=1">Publication</a>
+                        if (ViewBag.SortColumn == "PublicationID")
+                        {
+                            <i class="fa @ViewBag.IconClass"></i>
+                        }
+                    }
+                </th>
+
+                @*Actions*@
+                <th>Actions</th>
+
+            </tr>
+        </thead>
+        <tbody id="myTable">
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td><img src="data:image;base64,@item.photo" width="100px" /></td>
+                    <td>@item.BookID</td>
+                    <td>@item.BookName</td>
+                    <td>@item.Price.Value.ToString("C")</td>
+                    <td>@item.Author</td>
+                    <td>@item.Genre</td>
+                    <td>@item.AvailabilityStatus</td>
+                    <td>@item.Publication.PublicationName</td>
+                    <td>
+                        <a class="btn btn-info" href="/Books/Edit/@item.BookID">Edit</a>&nbsp;
+                        <a class="btn btn-danger" href="/Books/Delete/@item.BookID">Delete</a>
+                    </td>
+                </tr>
+            }
+
+            <tr>
+                <td colspan="9">
+                    @{ 
+                        int PrevPageNo = ViewBag.PageNo - 1;
+                        if (PrevPageNo <= 0)
+                        {
+                            PrevPageNo = 1;
+                        }
+                        int NextPageNo = ViewBag.PageNo + 1;
+                        if (NextPageNo > ViewBag.NoOfPages)
+                        {
+                            NextPageNo = ViewBag.NoOfPages;
+                        }
+                    }
+
+                    <ul class="pagination justify-content-center">
+                        <li class="page-item">
+                            <a class="page-link" href="/books/index?SortColumn=@ViewBag.SortColumn&IconClass=ViewBag.IconClass&PageNo=@PrevPageNo">Prev</a>
+                        </li>
+
+                        @for (int i = 0; i < ViewBag.NoOfPages; i++)
+                        {
+                            if ((i + 1) == ViewBag.PageNo)
+                            {
+                                <li class="page-item active">
+                                    <a class="page-link" href="/books/index?SortColumn=@ViewBag.SortColumn&IconClass=ViewBag.IconClass&PageNo=@(i+1)">@(i+1)</a>
+                                </li>
+                            }
+                            else
+                            {
+                                <li class="page-item">
+                                    <a class="page-link" href="/books/index?SortColumn=@ViewBag.SortColumn&IconClass=ViewBag.IconClass&PageNo=@(i+1)">@(i+1)</a>
+                                </li>
+                            }
+                        }
+
+                        <li class="page-item active">
+                            <a class="page-link" href="/books/index?SortColumn=@ViewBag.SortColumn&IconClass=ViewBag.IconClass&PageNo=@NextPageNo">Next</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</div>
+<script>
+    $(document).ready(function () {
+        $("#myInput").on("keyup", function () {
+            var value = $(this).val().toLowerCase();
+            $("#myTable tr").filter(function () {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
+    });
+</script>

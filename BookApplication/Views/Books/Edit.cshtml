@@ -1,0 +1,70 @@
+﻿@model BookApplication.Models.Book
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+
+<div class="container" style="background-color:white;">
+    <h3>Edit Book</h3>
+
+    <form action="/Books/Edit/@Model.BookID" method="post" enctype="multipart/form-data">
+        <div class="form-group">
+
+            <input type="hidden" class="form-control" id="BookID" name="BookID" value="@Model.BookID" />
+
+            <label for="BookName">Book Name</label>
+            <input type="text" class="form-control" id="BookName" name="BookName" placeholder="Book Name" value="@Model.BookName" />
+
+            <label for="Price">Price</label>
+            <input type="text" class="form-control" id="Price" name="Price" placeholder="Price" value="@Model.Price" />
+
+            <label for="Author">Author</label>
+            <input type="text" class="form-control" id="Author" name="Author" placeholder="Author" value="@Model.Author" />
+
+            <label for="Genre">Genre</label>
+            <input type="text" class="form-control" id="Genre" name="Genre" placeholder="Genre" value="@Model.Genre" />
+
+            @*
+        <label for="AvailabilityStatus">Availability Status</label>
+        <input type="text" class="form-control" id="AvailabilityStatus" name="AvailabilityStatus" placeholder="Availability Status" value="@Model.AvailabilityStatus"/>
+
+        <label for="PublicationID">Publication ID</label>
+        <input type="text" class="form-control" id="PublicationID" name="PublicationID" placeholder="Publication ID" value="@Model.PublicationID"/>
+            *@
+
+            <label for="AvailabilityStatus">Availability Status</label>
+            <select class="form-control" id="AvailabilityStatus" name="AvailabilityStatus">
+                <option value="">Please Select</option>
+                <option value="InStock">In Stock</option>
+                <option value="OutOfStock">Out Of Stock</option>
+            </select>
+
+            <label for="PublicationID">Publication</label>
+            <select class="form-control" id="PublicationID" name="PublicationID">
+                <option value="">Please Select</option>
+                @foreach (var item in ViewBag.publications)
+                {
+                    if (item.PublicationID == Model.PublicationID)
+                    {
+                        <option value="@item.PublicationID" selected="selected">@item.PublicationName</option>
+                    }
+                    else
+                    {
+                        <option value="@item.PublicationID">@item.PublicationName</option>
+                    }
+                }
+            </select>
+
+
+            <label for="Image">Image</label>
+            <input type="file" class="form-control-file" id="Image" name="photo" placeholder="Image" vale="@Model.photo" />
+
+        </div>
+        <button type="submit" class="btn btn-success">Save</button>
+        <a class="btn btn-danger" href="/Books/Index">Cancel</a>
+        <hr />
+    </form>
+</div>
+
+

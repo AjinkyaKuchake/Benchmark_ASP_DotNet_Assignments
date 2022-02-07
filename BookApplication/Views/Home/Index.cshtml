@@ -1,0 +1,105 @@
+﻿@model List<BookApplication.Models.Book>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+<style>
+    .card:hover {
+        box-shadow: -1px 9px 40px -12px #808080;
+    }
+</style>
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="card-deck">
+                @foreach (var item in Model)
+                {
+
+                    <div class="card" style="width:25em;margin:15px;display:inline-block;background-color:white;">
+                        <img src="data:image;base64,@item.photo" class="card-img-top" width="100%" />
+                        <div class="card-body">
+                            <div class="card-title">
+                                <h2>&nbsp;@item.BookName</h2>
+                            </div>
+                            <div class="card-text">
+                                <p>&nbsp;Author: @item.Author</p>
+                            </div>
+                            &nbsp;<a href="/Books/Details/@item.BookID" class="btn btn-primary">Details</a>
+                            <hr />
+                        </div>
+                    </div>
+
+
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@*Card Here*@
+@*
+    <div class="card mb-3" style="max-width: 540px;">
+        <div class="row no-gutters">
+            <div class="col-md-4">
+                <img src="data:image;base64,@item.photo" class="card-img" alt="...">
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h5 class="card-title">@item.BookName</h5>
+                    <p class="card-text">@item.Author</p>
+                    <p class="card-text">@item.Genre</p>
+                    <p class="card-text">@item.Price</p>
+                    <p class="card-text"><small class="text-muted">@item.AvailabilityStatus</small></p>
+                </div>
+            </div>
+        </div>
+    </div>*@
+
+@*Card Here*@
+
+
+@*Modal Button*@
+@*<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" value="@item.BookName">Read More</button>*@
+@*Modal Button*@
+@*Modal Content*@
+
+<!-- Modal -->
+@*
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">@item.BookName</h4>
+            </div>
+            <div class="modal-body">
+                @*<p>Some text in the modal.</p>*@
+@*
+                <div class="row">
+                    <div style="display:inline-block;">
+                        <img src="data:image;base64,@item.photo" width="100%" />
+                    </div>
+                    <div style="display:inline-block;">
+                        <h4>Name: @item.BookName</h4>
+                        <h4>Author: @item.Author</h4>
+                        <h4>Genre: @item.Genre</h4>
+                        <h4>Price: @item.Price</h4>
+                        <h4>Avail Status: @item.AvailabilityStatus</h4>
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>*@
+
+@*Modal Content*@
